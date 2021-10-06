@@ -69,4 +69,13 @@ public class AppController {
             throw new Exception("App not found");
         }
     }
+
+    @GetMapping("/")
+    public List<AppResponse> findAllAppsWithNameContains(@RequestParam(value = "name") String name) {
+        var apps = appService.findAllAppsByNameContains(name);
+        return apps
+                .stream()
+                .map(AppResponse::converter)
+                .collect(Collectors.toList());
+    }
 }

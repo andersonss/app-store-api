@@ -32,4 +32,8 @@ public class AppService {
         return appRepository.save(newApp);
     }
 
+    public List<App> findAllAppsByNameContains(String name) {
+        return appRepository.findAllByNameContains(name);
+    }
+
 }
