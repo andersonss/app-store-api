@@ -44,14 +44,14 @@ public class AppController {
     }
 
     @PostMapping("/")
-    public void addNewApp(@RequestBody AppRequest appRequest) {
+    public AppResponse addNewApp(@RequestBody AppRequest appRequest) {
         //TODO save category
         //TODO save publisher
         var newApp = new App();
         newApp.setName(appRequest.getName());
         newApp.setDescription(appRequest.getDescription());
         newApp.setPrice(appRequest.getPrice());
-        appService.addOrUpdateApp(newApp);
+        return AppResponse.converter(appService.addOrUpdateApp(newApp));
     }
 
     @PutMapping("/{id}")
