@@ -1,6 +1,6 @@
 package br.com.rogalabs.appstoreapi.controllers;
 
-import br.com.rogalabs.appstoreapi.controllers.dto.AppRequest;
+import br.com.rogalabs.appstoreapi.controllers.dto.request.AppRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,8 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Anderson on 06/10/2021

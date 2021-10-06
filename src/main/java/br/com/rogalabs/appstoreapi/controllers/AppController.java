@@ -1,7 +1,7 @@
 package br.com.rogalabs.appstoreapi.controllers;
 
-import br.com.rogalabs.appstoreapi.controllers.dto.AppRequest;
-import br.com.rogalabs.appstoreapi.controllers.dto.AppResponse;
+import br.com.rogalabs.appstoreapi.controllers.dto.request.AppRequest;
+import br.com.rogalabs.appstoreapi.controllers.dto.response.AppResponse;
 import br.com.rogalabs.appstoreapi.domain.App;
 import br.com.rogalabs.appstoreapi.service.AppService;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +24,8 @@ public class AppController {
     }
 
     @GetMapping("/all")
-    public List<AppResponse> findAll() {
-        var apps = appService.findAll();
+    public List<AppResponse> getAllApps() {
+        var apps = appService.getAllApps();
         return apps
                 .stream()
                 .map(AppResponse::converter)
@@ -33,8 +33,8 @@ public class AppController {
     }
 
     @GetMapping("/{id}")
-    public AppResponse findById(@PathVariable("id") Long id) throws Exception {
-        var app = appService.findById(id);
+    public AppResponse findAppById(@PathVariable("id") Long id) throws Exception {
+        var app = appService.findAppById(id);
 
         if (app.isPresent()) {
             return AppResponse.converter(app.get());
@@ -55,15 +55,15 @@ public class AppController {
     }
 
     @PutMapping("/{id}")
-    public void updateApp(@PathVariable("id") Long id, @RequestBody AppRequest appRequest) throws Exception {
-        var app = appService.findById(id);
+    public AppResponse updateApp(@PathVariable("id") Long id, @RequestBody AppRequest appRequest) throws Exception {
+        var app = appService.findAppById(id);
 
         if (app.isPresent()) {
             var appToUpdate = app.get();
-            appToUpdate.setName(appToUpdate.getName());
-            appToUpdate.setDescription(appToUpdate.getDescription());
-            appToUpdate.setPrice(appToUpdate.getPrice());
-            appService.addOrUpdateApp(appToUpdate);
+            appToUpdate.setName(appRequest.getName());
+            appToUpdate.setDescription(appRequest.getDescription());
+            appToUpdate.setPrice(appRequest.getPrice());
+            return AppResponse.converter(appService.addOrUpdateApp(appToUpdate));
         } else {
             //TODO create an customizable exception
             throw new Exception("App not found");

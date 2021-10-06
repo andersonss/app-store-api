@@ -1,4 +1,4 @@
-package br.com.rogalabs.appstoreapi.controllers.dto;
+package br.com.rogalabs.appstoreapi.controllers.dto.response;
 
 import br.com.rogalabs.appstoreapi.domain.App;
 
@@ -6,11 +6,29 @@ import br.com.rogalabs.appstoreapi.domain.App;
  * @author Anderson on 05/10/2021
  * @project app-store-api
  */
-public class AppRequest {
+public class AppResponse {
 
+    private Long id;
     private String name;
     private String description;
     private float price;
+
+    public static AppResponse converter(App app) {
+        var appRs = new AppResponse();
+        appRs.setId(app.getId());
+        appRs.setName(app.getName());
+        appRs.setDescription(app.getDescription());
+        appRs.setPrice(app.getPrice());
+        return appRs;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

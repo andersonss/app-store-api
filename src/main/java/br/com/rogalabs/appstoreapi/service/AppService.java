@@ -20,11 +20,11 @@ public class AppService {
         this.appRepository = appRepository;
     }
 
-    public List<App> findAll() {
+    public List<App> getAllApps() {
         return appRepository.findAll();
     }
 
-    public Optional<App> findById(Long id) {
+    public Optional<App> findAppById(Long id) {
         return appRepository.findById(id);
     }
 
