@@ -31,4 +31,6 @@ public class PublisherService {
     public Publisher addOrUpdatePublisher(Publisher newPublisher) {
         return publisherRepository.save(newPublisher);
     }
+
+    //TODO Add new app
 }

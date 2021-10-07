@@ -31,29 +31,48 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> findCategoryById(Long id) {
-        return categoryRepository.findById(id);
+    public Category findCategoryById(Long categoryId) throws Exception {
+        Optional<Category> categorybyId = categoryRepository.findById(categoryId);
+        if (categorybyId.isPresent()) {
+            return categorybyId.get();
+        } else throw new Exception("Category not found");
     }
 
     public Category addOrUpdateCategory(Category newCategory) {
         return categoryRepository.save(newCategory);
     }
 
-    public void addNewAppToCategory(Long id, App app) throws Exception {
-        Optional<Category> categoryById = categoryRepository.findById(id);
+    public List<Category> addNewCategories(List<Category> categories) {
+        return categoryRepository.saveAll(categories);
+    }
+
+    public void addNewAppToCategory(Long categoryId, App app) throws Exception {
+        App newApp = appRepository.save(app);
+
+        Optional<Category> categoryById = categoryRepository.findById(categoryId);
+
         if (categoryById.isPresent()) {
             Category category = categoryById.get();
-            category.addAppToCategory(app);
+            category.addAppToCategory(newApp);
             categoryRepository.save(category);
-            app.setCategory(category);
-            appRepository.save(app);
+
+            newApp.setCategory(category);
+            appRepository.save(newApp);
         } else {
             throw new Exception("Category not found");
         }
     }
 
-    public App findCheapestAppOfCategory(Long id) throws Exception {
-        Optional<Category> categoryById = categoryRepository.findById(id);
+    public void addAllNewAppsToCategory(Long categoryId, List<App> apps) throws Exception {
+        List<App> appList = appRepository.saveAll(apps);
+
+        for (App app : appList) {
+            addNewAppToCategory(categoryId, app);
+        }
+    }
+
+    public App findCheapestAppOfCategory(Long categoryId) throws Exception {
+        Optional<Category> categoryById = categoryRepository.findById(categoryId);
         if (categoryById.isPresent()) {
             Category category = categoryById.get();
 

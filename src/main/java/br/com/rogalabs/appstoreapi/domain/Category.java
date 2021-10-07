@@ -1,7 +1,10 @@
 package br.com.rogalabs.appstoreapi.domain;
 
+import org.apache.catalina.LifecycleState;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +36,10 @@ public class Category {
 
     public void addAppToCategory(App app) {
         this.getAppsOfCategory().add(app);
+    }
+
+    public void addAppToCategory(List<App> apps) {
+        this.getAppsOfCategory().addAll(apps);
     }
 
     public Long getId() {

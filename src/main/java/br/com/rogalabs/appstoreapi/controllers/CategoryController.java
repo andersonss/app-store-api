@@ -35,12 +35,7 @@ public class CategoryController {
     @GetMapping("/{id}")
     public CategoryResponse findCategoryById(@PathVariable("id") Long id) throws Exception {
         var category = categoryService.findCategoryById(id);
-
-        if (category.isPresent()) {
-            return CategoryResponse.converter(category.get());
-        }
-
-        throw new Exception("Category not found");
+        return CategoryResponse.converter(category);
     }
 
     @PostMapping("/")
@@ -54,16 +49,9 @@ public class CategoryController {
     public CategoryResponse updateCategory(@PathVariable("id") Long id, @RequestBody CategoryRequest categoryRequest)
             throws Exception {
         var category = categoryService.findCategoryById(id);
-
         //TODO keep apps from category
-        if (category.isPresent()) {
-            var categoryToUpdate = category.get();
-            categoryToUpdate.setName(categoryRequest.getName());
-            return CategoryResponse.converter(categoryService.addOrUpdateCategory(categoryToUpdate));
-        } else {
-            //TODO create an customizable exception
-            throw new Exception("Category not found");
-        }
+        category.setName(categoryRequest.getName());
+        return CategoryResponse.converter(categoryService.addOrUpdateCategory(category));
     }
 
     //TODO addNewAppToCategory
