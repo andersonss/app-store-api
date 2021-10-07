@@ -31,6 +31,10 @@ public class Category {
         this.name = name;
     }
 
+    public void addAppToCategory(App app) {
+        this.getAppsOfCategory().add(app);
+    }
+
     public Long getId() {
         return id;
     }

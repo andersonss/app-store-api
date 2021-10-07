@@ -51,9 +51,11 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public CategoryResponse updateApp(@PathVariable("id") Long id, @RequestBody CategoryRequest categoryRequest) throws Exception {
+    public CategoryResponse updateCategory(@PathVariable("id") Long id, @RequestBody CategoryRequest categoryRequest)
+            throws Exception {
         var category = categoryService.findCategoryById(id);
 
+        //TODO keep apps from category
         if (category.isPresent()) {
             var categoryToUpdate = category.get();
             categoryToUpdate.setName(categoryRequest.getName());
@@ -63,4 +65,7 @@ public class CategoryController {
             throw new Exception("Category not found");
         }
     }
+
+    //TODO addNewAppToCategory
+    //TODO findCheapestAppOfCategory
 }
