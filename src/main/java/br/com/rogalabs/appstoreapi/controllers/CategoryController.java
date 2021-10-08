@@ -1,7 +1,10 @@
 package br.com.rogalabs.appstoreapi.controllers;
 
+import br.com.rogalabs.appstoreapi.controllers.dto.request.AppRequest;
 import br.com.rogalabs.appstoreapi.controllers.dto.request.CategoryRequest;
+import br.com.rogalabs.appstoreapi.controllers.dto.response.AppResponse;
 import br.com.rogalabs.appstoreapi.controllers.dto.response.CategoryResponse;
+import br.com.rogalabs.appstoreapi.domain.App;
 import br.com.rogalabs.appstoreapi.domain.Category;
 import br.com.rogalabs.appstoreapi.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -46,14 +49,25 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public CategoryResponse updateCategory(@PathVariable("id") Long id, @RequestBody CategoryRequest categoryRequest)
+    public CategoryResponse updateCategory(@PathVariable("id") Long categoryId, @RequestBody CategoryRequest categoryRequest)
             throws Exception {
-        var category = categoryService.findCategoryById(id);
+        var category = categoryService.findCategoryById(categoryId);
         //TODO keep apps from category
         category.setName(categoryRequest.getName());
         return CategoryResponse.converter(categoryService.addOrUpdateCategory(category));
     }
 
-    //TODO addNewAppToCategory
-    //TODO findCheapestAppOfCategory
+    @PostMapping("/{id}")
+    public void addNewAppToCategory(@PathVariable("id") Long categoryId, @RequestBody AppRequest appRequest) throws Exception {
+        var newApp = new App();
+        newApp.setName(appRequest.getName());
+        newApp.setDescription(appRequest.getDescription());
+        newApp.setPrice(appRequest.getPrice());
+        categoryService.addNewAppToCategory(categoryId, newApp);
+    }
+
+    @GetMapping("/cheapest-app/{id}")
+    public AppResponse findCheapestAppOfCategory(@PathVariable("id") Long categoryId) throws Exception {
+        return AppResponse.converter(categoryService.findCheapestAppOfCategory(categoryId));
+    }
 }
