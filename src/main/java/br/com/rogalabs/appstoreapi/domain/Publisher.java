@@ -55,23 +55,23 @@ public class Publisher {
         this.apps = apps;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Publisher publisher = (Publisher) o;
-//
-//        if (id != null ? !id.equals(publisher.id) : publisher.id != null) return false;
-//        if (name != null ? !name.equals(publisher.name) : publisher.name != null) return false;
-//        return apps != null ? apps.equals(publisher.apps) : publisher.apps == null;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = id != null ? id.hashCode() : 0;
-//        result = 31 * result + (name != null ? name.hashCode() : 0);
-//        result = 31 * result + (apps != null ? apps.hashCode() : 0);
-//        return result;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Publisher publisher = (Publisher) o;
+
+        if (id != null ? !id.equals(publisher.id) : publisher.id != null) return false;
+        if (name != null ? !name.equals(publisher.name) : publisher.name != null) return false;
+        return apps != null ? apps.equals(publisher.apps) : publisher.apps == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (apps != null ? apps.hashCode() : 0);
+        return result;
+    }
 }
