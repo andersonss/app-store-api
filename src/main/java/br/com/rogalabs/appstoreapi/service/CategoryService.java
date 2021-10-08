@@ -64,9 +64,7 @@ public class CategoryService {
     }
 
     public void addAllNewAppsToCategory(Long categoryId, List<App> apps) throws Exception {
-        List<App> appList = appRepository.saveAll(apps);
-
-        for (App app : appList) {
+        for (App app : apps) {
             addNewAppToCategory(categoryId, app);
         }
     }

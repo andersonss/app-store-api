@@ -1,12 +1,11 @@
 package br.com.rogalabs.appstoreapi.repositories;
 
+import br.com.rogalabs.appstoreapi.AbstractTest;
 import br.com.rogalabs.appstoreapi.domain.App;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -17,10 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Anderson on 06/10/2021
  * @project app-store-api
  */
-@DataJpaTest
-@DirtiesContext
-@ActiveProfiles("test")
-class AppRepositoryTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+public class AppRepositoryTest extends AbstractTest {
 
     @Autowired
     private AppRepository appRepository;

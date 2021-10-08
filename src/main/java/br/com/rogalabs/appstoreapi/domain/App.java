@@ -85,4 +85,30 @@ public class App {
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        App app = (App) o;
+
+        if (Float.compare(app.price, price) != 0) return false;
+        if (id != null ? !id.equals(app.id) : app.id != null) return false;
+        if (name != null ? !name.equals(app.name) : app.name != null) return false;
+        if (description != null ? !description.equals(app.description) : app.description != null) return false;
+        if (category != null ? !category.equals(app.category) : app.category != null) return false;
+        return publisher != null ? publisher.equals(app.publisher) : app.publisher == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
+        return result;
+    }
 }

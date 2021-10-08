@@ -1,19 +1,16 @@
 package br.com.rogalabs.appstoreapi.service;
 
+import br.com.rogalabs.appstoreapi.AbstractTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author Anderson on 06/10/2021
  * @project app-store-api
  */
-@DataJpaTest
-@DirtiesContext
-@ActiveProfiles("test")
-class AppServiceTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+class AppServiceTest extends AbstractTest {
 
     @Autowired
     private AppService appService;

@@ -1,10 +1,12 @@
 package br.com.rogalabs.appstoreapi.repositories;
 
+import br.com.rogalabs.appstoreapi.AbstractTest;
 import br.com.rogalabs.appstoreapi.domain.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -17,10 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Anderson on 07/10/2021
  * @project app-store-api
  */
-@DataJpaTest
-@DirtiesContext
-@ActiveProfiles("test")
-public class CategoryRepositoryTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+public class CategoryRepositoryTest extends AbstractTest {
 
     @Autowired
     private CategoryRepository categoryRepository;
