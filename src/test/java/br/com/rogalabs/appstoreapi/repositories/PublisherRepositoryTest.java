@@ -1,15 +1,10 @@
 package br.com.rogalabs.appstoreapi.repositories;
 
 import br.com.rogalabs.appstoreapi.AbstractTest;
-import br.com.rogalabs.appstoreapi.domain.App;
 import br.com.rogalabs.appstoreapi.domain.Publisher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -21,10 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @project app-store-api
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class PublisherRepositoryTest extends AbstractTest {
-
-    @Autowired
-    private PublisherRepository publisherRepository;
 
     @BeforeEach
     public void setUp() {

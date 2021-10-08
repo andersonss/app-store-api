@@ -4,8 +4,8 @@ import br.com.rogalabs.appstoreapi.AbstractTest;
 import br.com.rogalabs.appstoreapi.domain.App;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -18,9 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class AppRepositoryTest extends AbstractTest {
-
-    @Autowired
-    private AppRepository appRepository;
 
     @BeforeEach
     public void setUp() {

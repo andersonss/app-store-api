@@ -3,11 +3,8 @@ package br.com.rogalabs.appstoreapi.service;
 import br.com.rogalabs.appstoreapi.AbstractTest;
 import br.com.rogalabs.appstoreapi.domain.App;
 import br.com.rogalabs.appstoreapi.domain.Category;
-import br.com.rogalabs.appstoreapi.repositories.AppRepository;
-import br.com.rogalabs.appstoreapi.repositories.CategoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
@@ -21,12 +18,6 @@ import static org.assertj.core.api.Assertions.fail;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class CategoryServiceTest extends AbstractTest {
-
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    private AppRepository appRepository;
 
     private CategoryService categoryService;
 
